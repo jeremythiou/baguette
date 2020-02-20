@@ -7,6 +7,18 @@ body{
   position: relative;
 }
 
+#form{
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
 .js-baguette{
     cursor: pointer;
     position: absolute;
@@ -26,7 +38,7 @@ body{
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  transition: opacity 5s, width 5s, height 5s, background-size 5s;
+  transition: opacity 5s cubic-bezier(0.03, 0.4, 0, 0.99), width 5s cubic-bezier(0.03, 0.4, 0, 0.99), height 5s cubic-bezier(0.03, 0.4, 0, 0.99), background-size 5s cubic-bezier(0.03, 0.4, 0, 0.99);
 }
 
 .display{

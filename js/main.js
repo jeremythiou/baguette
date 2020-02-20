@@ -1,8 +1,52 @@
 var body = document.getElementById("body");
 var baguepi = document.getElementById("baguepi");
+var baguetteForm = document.getElementById("form");
+var baguetteInput = document.getElementById("baguette-number");
 
-var baguettes = 20;
+var winWidth = window.innerWidth;
+var winHeight = window.innerHeight;
+
+var style = {
+    size: "0",
+    top: "0",
+    left: "0",
+    rotate: "0",
+    opacity: "0"
+};
+
+var baguettes = 0;
 var rotatingCounter = 0;
+
+var startButton = document.getElementById("js-submit");
+startButton.addEventListener("click", e => {
+    e.preventDefault();
+    baguettes = baguetteInput.value;
+
+    start(baguettes);
+});
+
+function start(baguettes) {
+    baguetteForm.style.display = "none";
+    
+    for(var i = 0; i < baguettes; i++){
+        style.size = getRandomNumber(35, 200);
+    
+        style.top = getRandomNumber(0, winHeight - (style.size+25));
+        style.left = getRandomNumber(0, winWidth - (style.size+25));
+    
+        style.rotate = getRandomNumber(0, 359);
+    
+        style.opacity = getRandomNumber(0.1, 1);
+        
+        baguette = new Baguette(i, style);
+        baguette.display();
+    }
+}
+
+
+function getRandomNumber(min, max) {
+    return Math.random() * (max - min) + min;  
+}
 
 class Baguette {
     constructor(id, style){
@@ -59,33 +103,4 @@ class Baguette {
             baguepi.classList.add("display");
         }
     }
-}
-
-var winWidth = window.innerWidth;
-var winHeight = window.innerHeight;
-
-var style = {
-    size: "0",
-    top: "0",
-    left: "0",
-    rotate: "0",
-    opacity: "0"
-};
-
-for(var i = 0; i < baguettes; i++){
-    style.size = getRandomNumber(35, 200);
-
-    style.top = getRandomNumber(0, winHeight - (style.size+25));
-    style.left = getRandomNumber(0, winWidth - (style.size+25));
-
-    style.rotate = getRandomNumber(0, 359);
-
-    style.opacity = getRandomNumber(0.1, 1);
-    
-    baguette = new Baguette(i, style);
-    baguette.display();
-}
-
-function getRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;  
 }
